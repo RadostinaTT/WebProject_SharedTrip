@@ -3,6 +3,7 @@ using SharedTrip.ViewModels.Trips;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace SharedTrip.Services
@@ -29,6 +30,21 @@ namespace SharedTrip.Services
 
             this.db.Trips.Add(dbTrip);
             this.db.SaveChanges();
+        }
+
+        public IEnumerable<TripViewModel> GetAll()
+        {
+            var trips = this.db.Trips.Select(x => new TripViewModel
+            {
+                DepartureTime = x.DepartureTime,
+                StartPoint = x.StartPoint,
+                EndPoint = x.EndPoint,
+                Id = x.Id,
+                Seats = x.Seats,
+                UsedSeats = x.UserTrips.Count(),
+            }).ToList();
+
+            return trips;
         }
     }
 }

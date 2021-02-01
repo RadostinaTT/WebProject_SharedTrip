@@ -3,9 +3,7 @@ using SharedTrip.ViewModels.Trips;
 using SUS.HTTP;
 using SUS.MvcFramework;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 
 namespace SharedTrip.Controllers
 {
@@ -17,12 +15,13 @@ namespace SharedTrip.Controllers
         {
             this.tripsService = tripsService;
         }
-        public HttpResponse Add()
+        public HttpResponse All()
         {
-            return this.View();
+            var trips = this.tripsService.GetAll();
+            return this.View(trips);
         }
 
-        public HttpResponse All()
+        public HttpResponse Add()
         {
             return this.View();
         }
