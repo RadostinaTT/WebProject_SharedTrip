@@ -2,10 +2,7 @@
 using SharedTrip.ViewModels.Users;
 using SUS.HTTP;
 using SUS.MvcFramework;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace SharedTrip.Controllers
 {
@@ -76,6 +73,12 @@ namespace SharedTrip.Controllers
             this.usersSevice.CreateUser(input.Username, input.Email, input.Password);
 
             return this.Redirect("/Users/Login");
+        }
+
+        public HttpResponse Logout()
+        {
+            this.SignOut();
+            return this.Redirect("/");
         }
     }
 }
