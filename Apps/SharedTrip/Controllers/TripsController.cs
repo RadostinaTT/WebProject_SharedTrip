@@ -1,4 +1,4 @@
-﻿using SharedTrip.Services;
+using SharedTrip.Services;
 using SharedTrip.ViewModels.Trips;
 using SUS.HTTP;
 using SUS.MvcFramework;
@@ -57,6 +57,12 @@ namespace SharedTrip.Controllers
             this.tripsService.CreateTrip(input);
 
             return this.Redirect("/Trips/All");
+        }
+
+        public HttpResponse Details(string tripId)
+        {
+            var trip = this.tripsService.GetDetails(tripId);
+            return this.View(trip);
         }
     }
 }
