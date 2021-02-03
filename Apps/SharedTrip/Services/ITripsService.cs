@@ -5,10 +5,13 @@ namespace SharedTrip.Services
 {
     public interface ITripsService
     {
-        public void CreateTrip(AddTripInputModel trip);
+        void CreateTrip(AddTripInputModel trip);
 
         IEnumerable<TripViewModel> GetAll();
 
         TripDetailsViewModel GetDetails(string tripId);
+
+        bool HasTripAvailableSeats(string tripId);
+        bool AddUserToTrip(string userId, string tripId);
     }
 }
