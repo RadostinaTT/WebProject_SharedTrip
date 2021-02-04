@@ -17,12 +17,20 @@ namespace SharedTrip.Controllers
         }
         public HttpResponse All()
         {
+            if (!this.IsUserSignedIn())
+            {
+                this.Redirect("/");
+            }
             var trips = this.tripsService.GetAll();
             return this.View(trips);
         }
 
         public HttpResponse Add()
         {
+            if (!this.IsUserSignedIn())
+            {
+                this.Redirect("/");
+            }
             return this.View();
         }
 
@@ -61,6 +69,10 @@ namespace SharedTrip.Controllers
 
         public HttpResponse Details(string tripId)
         {
+            if (!this.IsUserSignedIn())
+            {
+                this.Redirect("/");
+            }
             var trip = this.tripsService.GetDetails(tripId);
             return this.View(trip);
         }
